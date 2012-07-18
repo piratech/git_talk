@@ -48,3 +48,28 @@
     * Unterstützung nicht-linearer Entwicklung
     * komplett verteilt
     * Unterstützung sehr großer Projekte
+
+---
+# Git – Die Grundlagen
+ + Snapshots, keine Diffs
+
+ ![Snapshots](images/snapshots.png)
+
+---
+# Git – Die Grundlagen
+ + (fast) alle Operationen sind lokal (Ausnahme: `fetch` und `push`
+   und Erweiterungen)
+ + Checksummen-basiertes speichern (SHA1-Summen sind Objekt-ID)
+ + nur Hinzufügen von Daten erlaubt
+ + Dateien können 3 Zustände in einem Git-Repository haben:
+    * **commited:** Datei in Datenbak gespeichert
+    * **verändert:** Datei verändert, aber noch nicht commited
+    * **staged:** veränderte Datei, die zum commiten markiert wurde
+ + ⇒ Drei Hauptsektionen eines Git-Projekts:
+    * Git-Verzeichnis
+    * Arbeits-Verzeichnis
+    * Staging-Area
+
+---
+# Git – Die Grundlagen
+ ![Hauptoperationen](images/local_operations.png)
