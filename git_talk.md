@@ -2,16 +2,16 @@
 
 ---
 # Was ist Versionskontrolle?
- * Dokumentation von Veränderung von Dateien über der Zeit
- * Wiederherstellbarkeit früherer Versionen <br>
-   ⇒ „If you skrew things up […], you can easily recover“ – *pro GIT*
- * Simpelste Form der Versionskontrolle: Kopiere über Zwischenversionen
+ + Dokumentation von Veränderung von Dateien über der Zeit
+ + Wiederherstellbarkeit früherer Versionen <br>
+   ⇒ „If you skrew things up […], you can easily recover“ – *pro Git*
+ + Simpelste Form der Versionskontrolle: Kopiere über Zwischenversionen
    von Dateien in ein „Backup“-Verzeichnis
 
 ---
 # Zentrale Versionskontrollsysteme (CVCS)
- * z. B. CVS, Subversion, Perforce
- * ein zentrales Repository, Clients checken Dateien von dort aus und
+ + z. B. CVS, Subversion, Perforce
+ + ein zentrales Repository, Clients checken Dateien von dort aus und
    commiten nach dort
 
  ![Zentrale Versionskontrolle](images/cvcs.png)
@@ -28,8 +28,8 @@
 
 ---
 # Verteilte Versionskontrollsystem (DVCS)
- * z. B. Git, Mercurial, Bazaar
- * Clients checken Dateien nicht aus, sondern spiegeln das gesamte
+ + z. B. Git, Mercurial, Bazaar
+ + Clients checken Dateien nicht aus, sondern spiegeln das gesamte
    Repository
 
  ![Dezentrale Versionskontrolle](images/dvcs.png)
