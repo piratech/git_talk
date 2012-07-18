@@ -25,3 +25,11 @@
 ## Nachteile
  - Single Point of Failure
  - Verbindung zum zentralen Server ist zwingend notwendig
+
+---
+# Verteilte Versionskontrollsystem (DVCS)
+ * z. B. Git, Mercurial, Bazaar
+ * Clients checken Dateien nicht aus, sondern spiegeln das gesamte
+   Repository
+
+ ![Dezentrale Versionskontrolle](images/dvcs.png)
