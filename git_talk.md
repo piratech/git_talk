@@ -33,3 +33,18 @@
    Repository
 
  ![Dezentrale Versionskontrolle](images/dvcs.png)
+
+---
+# Git – Eine kurze Geschichtsstunde
+ + Linux-Kernel wurde bis 2002 mit Patchdateien via E-Mail
+   versionskontrolliert
+ + ab 2002: proprietäres DVCS BitKeeper
+ + 2005: Anspannung der Beziehung zwischen Linux-Community und
+   BitKeeper-Entwickler
+   ⇒ Linus Torvald entwickelt als Wochenendprojekt Git als Alternative
+ + Anforderungen:
+    * Geschwindigkeit
+    * Einfaches Design
+    * Unterstützung nicht-linearer Entwicklung
+    * komplett verteilt
+    * Unterstützung sehr großer Projekte
