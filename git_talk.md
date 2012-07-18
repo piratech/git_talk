@@ -73,3 +73,23 @@
 ---
 # Git – Die Grundlagen
  ![Hauptoperationen](images/local_operations.png)
+
+---
+# Git – Die Grundlagen
+ + Alles in einem Git-Repository ist ein Objekt (`.git/objects`)
+ + Objekte werden durch eine eindeutige ID (ihre SHA1-Checksumme)
+   identifiziert
+ + Vier Arten von Objekte:
+    * **Blob:** Abbild des Inhalts einer Datei
+    * **Tree:** zeigt auf Menge von Blob- und anderen Tree-Objekten
+        (äquivalent zu Verzeichnis in Dateisystemen) und benennt sie
+        (= Dateinamen)
+    * **Commit:** zeigt auf ein Tree-Objekt, mindestens ein
+        Eltern-Commit-Objekt und hat Eigenschaften wie Autor, Commiter,
+        Commit-Nachricht und Zeitstempel
+    * **Tag:** zeigt auf Commit-Objekt und Eigenschaften wie Tagger,
+        Zeitstempel und Tag-Nachricht
+
+---
+# Git – Die Grundlagen
+ ![Git Objekte](images/object_tree.png)
