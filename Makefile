@@ -1,6 +1,6 @@
 SLIDES=git_talk
 
-default: rst
+default: markdown
 
-rst:
-	landslide $(SLIDES).rst -d $(SLIDES).html
+markdown:
+	landslide $(SLIDES).md -d $(SLIDES).html
