@@ -1,4 +1,4 @@
-# GIT - Distributed Version Control
+# Git - Distributed Version Control
 
 ---
 # Was ist Versionskontrolle?
