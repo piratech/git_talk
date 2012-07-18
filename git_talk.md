@@ -93,3 +93,16 @@
 ---
 # Git – Die Grundlagen
  ![Git Objekte](images/object_tree.png)
+
+---
+# Git – Die Grundlagen
+ + Obvious flaw is obvious: 160-Bit-Hashes sind schwer zu merken<br>
+    ⇒ Referenzen
+ + Dateien im `.git/refs`-Verzeichnis mit einem Hashwert oder
+   `ref: refs/...` als Inhalt)
+    * Branches (`refs/heads/<name>`)
+    * Der aktuelle Kopf (`refs/HEAD`)
+    * leichtgewichtige Tags (`refs/tags/<name>`)
+    * entfernte Repositories (`refs/remotes/<repo_name>/<branchname>`)
+ + Unterschied zu Referenzen und Tag-Objekten (annotierte Tags):
+    Referenzen können verschoben werden
