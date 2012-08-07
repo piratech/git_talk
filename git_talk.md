@@ -141,4 +141,4 @@
 ---
 # Literatur
  + <a href="http://git-scm.com/book">Pro Git, *Scott Chacon*</a>
- + <a href="http://git-scm.com/docs">Manpages</a>
+ + <a href="http://git-scm.com/docs">Manpages</a> (`man git [<command>]`)
