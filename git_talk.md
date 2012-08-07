@@ -131,6 +131,12 @@
 ---
 # Packfiles
  + `.git/objects/pack`?
+ + `[0-9]{2}/`-Objekte sind so genannte loose objects
+ + Snapshots werden mit der Zeit sehr groß (besonders bei großen Dateien)
+ + `git gc` komprimiert mit Delta- und zlib-Komprimierung
+ + Speichert Ergebnisse in `pack-*.idx` (ein Index der komprimierten
+   Objekte) und `pack-*.pack` (die komprimierten Objekte)
+ + Half-byte orientierte Bytedateien in network order
 
 ---
 # Literatur
