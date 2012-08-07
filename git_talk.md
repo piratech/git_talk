@@ -3,7 +3,7 @@
 ---
 # Was ist Versionskontrolle?
  + Dokumentation von Veränderung von Dateien über der Zeit
- + Wiederherstellbarkeit früherer Versionen <br>
+ + Wiederherstellbarkeit früherer Versionen <br> 
    ⇒ „If you skrew things up […], you can easily recover“ – *pro Git*
  + Simpelste Form der Versionskontrolle: Kopiere über Zwischenversionen
    von Dateien in ein „Backup“-Verzeichnis
@@ -29,17 +29,17 @@
 ---
 # Verteilte Versionskontrollsystem (DVCS)
  + z. B. Git, Mercurial, Bazaar
- + Clients checken Dateien nicht aus, sondern spiegeln das gesamte
+ + Clients checken Dateien nicht aus, sondern spiegeln das gesamte 
    Repository
 
  ![Dezentrale Versionskontrolle](images/dvcs.png)
 
 ---
 # Git – Eine kurze Geschichtsstunde
- + Linux-Kernel wurde bis 2002 mit Patchdateien via E-Mail
+ + Linux-Kernel wurde bis 2002 mit Patchdateien via E-Mail 
    versionskontrolliert
  + ab 2002: proprietäres DVCS BitKeeper
- + 2005: Anspannung der Beziehung zwischen Linux-Community und
+ + 2005: Anspannung der Beziehung zwischen Linux-Community und 
    BitKeeper-Entwickler
    ⇒ Linus Torvald entwickelt als Wochenendprojekt Git als Alternative
  + Anforderungen:
@@ -76,9 +76,9 @@
 
 ---
 # Plumbing vs. Porcelain
- + *git.git* war ursprünglich nur als Toolkit für
+ + *git.git* war ursprünglich nur als Toolkit für 
    Versionskontrollsysteme gedacht <br>
-   ⇒ Viele Low-Level-Befehle, die aneinaneder gekettet
+   ⇒ Viele Low-Level-Befehle, die aneinaneder gekettet 
      benutzerfreundliche Befehle ergeben
  + **Plumbing**: Low-Level-Befehle
 
@@ -102,13 +102,13 @@
    identifiziert
  + Vier Arten von Objekte:
     * **Blob:** Abbild des Inhalts einer Datei
-    * **Tree:** zeigt auf Menge von Blob- und anderen Tree-Objekten
-        (äquivalent zu Verzeichnis in Dateisystemen) und benennt sie
+    * **Tree:** zeigt auf Menge von Blob- und anderen Tree-Objekten 
+        (äquivalent zu Verzeichnis in Dateisystemen) und benennt sie 
         (= Dateinamen)
-    * **Commit:** zeigt auf ein Tree-Objekt, *mindestens* ein
-        Eltern-Commit-Objekt und hat Eigenschaften wie Autor, Commiter,
+    * **Commit:** zeigt auf ein Tree-Objekt, *mindestens* ein 
+        Eltern-Commit-Objekt und hat Eigenschaften wie Autor, Commiter, 
         Commit-Nachricht und Zeitstempel
-    * **Tag:** zeigt auf Commit-Objekt und Eigenschaften wie Tagger,
+    * **Tag:** zeigt auf Objekt und Eigenschaften wie Tagger,
         Zeitstempel und Tag-Nachricht
 
 ---
@@ -118,8 +118,8 @@
 ---
 # Git-Referenzen
  + Obvious flaw is obvious: 160-Bit-Hashes sind schwer zu merken<br>
-    ⇒ Referenzen
- + Dateien im `.git/refs`-Verzeichnis mit einem Hashwert oder
+    ⇒ Referenzen 
+ + Dateien im `.git/refs`-Verzeichnis mit einem Hashwert oder 
    `ref: refs/...` als Inhalt)
     * Branches (`refs/heads/<name>`)
     * Der aktuelle Kopf (`refs/HEAD`)
@@ -127,6 +127,10 @@
     * entfernte Repositories (`refs/remotes/<repo_name>/<branchname>`)
  + Unterschied zu Referenzen und Tag-Objekten (annotierte Tags):
     Referenzen können verschoben werden
+
+---
+# Packfiles
+ + `.git/objects/pack`?
 
 ---
 # Literatur
