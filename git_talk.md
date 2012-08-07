@@ -106,3 +106,8 @@
     * entfernte Repositories (`refs/remotes/<repo_name>/<branchname>`)
  + Unterschied zu Referenzen und Tag-Objekten (annotierte Tags):
     Referenzen können verschoben werden
+
+---
+# Literatur
+ + <a href="http://git-scm.com/book">Pro Git, *Scott Chacon*</a>
+ + <a href="http://git-scm.com/docs">Manpages</a>
