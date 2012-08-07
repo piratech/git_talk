@@ -75,6 +75,27 @@
  ![Hauptoperationen](images/local_operations.png)
 
 ---
+# Plumbing vs. Porcelain
+ + *git.git* war ursprünglich nur als Toolkit für
+   Versionskontrollsysteme gedacht <br>
+   ⇒ Viele Low-Level-Befehle, die aneinaneder gekettet
+     benutzerfreundliche Befehle ergeben
+ + **Plumbing**: Low-Level-Befehle
+
+        git cat-file
+        git hash-object
+        git update-index
+        git write-tree
+        ...
+
+ + **Porcelain**: benutzerfreundlichere Befehle
+
+        git checkout
+        git commit
+        git remote
+        ...
+
+---
 # Git-Objekte
  + Alles in einem Git-Repository ist ein Objekt (`.git/objects`)
  + Objekte werden durch eine eindeutige ID (ihre SHA1-Checksumme)
