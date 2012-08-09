@@ -10,4 +10,4 @@ markdown-slides:
 	landslide $(SLIDES).md -d $(SLIDES).html
 
 markdown-scriptum:
-	markdown_py -f $(SLIDES)_script.html $(SLIDES)_script.md
+	bash make_scriptum.sh
