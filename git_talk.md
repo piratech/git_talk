@@ -35,7 +35,7 @@
  ![Dezentrale Versionskontrolle](images/dvcs.png)
 
 ---
-# Git – Eine kurze Geschichtsstunde
+# Eine kurze Geschichtsstunde
  + Linux-Kernel wurde bis 2002 mit Patchdateien via E-Mail 
    versionskontrolliert
  + ab 2002: proprietäres DVCS BitKeeper
@@ -50,13 +50,13 @@
     * Unterstützung sehr großer Projekte
 
 ---
-# Git – Die Grundlagen
+# Grundlagen
  + Snapshots, keine Diffs
 
  ![Snapshots](images/snapshots.png)
 
 ---
-# Git – Die Grundlagen
+# Grundlagen
  + (fast) alle Operationen sind lokal (Ausnahme: `fetch` und `push`
    und Erweiterungen)
  + Checksummen-basiertes speichern (SHA1-Summen sind Objekt-ID)
@@ -71,7 +71,7 @@
     * Staging-Area
 
 ---
-# Git – Die Grundlagen
+# Grundlagen
  ![Hauptoperationen](images/local_operations.png)
 
 ---

@@ -188,3 +188,21 @@
     git log --pretty=format:"%h %s" --graph
     git log --since=2.weeks --until=5.minute
     git log -1
+
+## Arbeiten mit Remotes
+
+    git remote
+    git remote -v
+
+    cd ..
+    git clone git://github.com/schacon/ticgit.git
+    cd ticgit
+    git remote -v
+    git remote add pb git://github.com/paulboone/ticgit.git
+    git remote -v
+    git fetch pb
+    git push origin master
+    git remote rename pb paul
+    git remote
+    git remote rm paul
+    git remote
