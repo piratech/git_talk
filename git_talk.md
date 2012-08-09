@@ -203,6 +203,33 @@
  * Inhalt des Körpers: genauere Beschreibung des Patches und Begründung
 
 ---
+# Commit-History betrachten
+ * Manipulation der Ausgabe mit `git log --pretty=format:<format string>`
+    <div>
+        <table>
+            <tr style="border-bottom: 1px solid black">
+                <th style="text-align: left;">Option &nbsp;</th>
+                <th style="text-align: left;">Beschreibung der Ausgabe</th>
+            </tr>
+            <tr><td>%H</td>     <td>Commit-Hash</td></tr>
+            <tr><td>%h</td>     <td>Abgekürzter Commit-Hash</td></tr>
+            <tr><td>%T</td>     <td>Tree-Hash</td></tr>
+            <tr><td>%t</td>     <td>Abgekürzter Tree-Hash</td></tr>
+            <tr><td>%P</td>     <td>Eltern-Hashes</td></tr>
+            <tr><td>%p</td>     <td>Abgekürzte Eltern-Hashes</td></tr>
+            <tr><td>%an</td>    <td>Name des Autors</td></tr>
+            <tr><td>%ae</td>    <td>E-Mailadresse des Autors</td></tr>
+            <tr><td>%ad</td>    <td>Datum des Authors (Format folgt der „–date=“-Option)</td></tr>
+            <tr><td>%ar</td>    <td>relatives Datum des Authors</td></tr>
+            <tr><td>%cn</td>    <td>Name des Committers</td></tr>
+            <tr><td>%ce</td>    <td>E-Mailadresse des Committers</td></tr>
+            <tr><td>%cd</td>    <td>Datum des Committers</td></tr>
+            <tr><td>%cr</td>    <td>relatives Datum des Committers</td></tr>
+            <tr><td>%s</td>     <td>Betreff der Commit-Nachricht</td></tr>
+            <tr><td>…</td>      <td>*(s. git help log)*</td></tr>
+        </table>
+    </div>
+---
 # Literatur
  + <a href="http://git-scm.com/book">Pro Git, *Scott Chacon*</a>
  + <a href="http://git-scm.com/docs">Manpages</a> (`git help [<command>]` oder `man git [<command>]`)

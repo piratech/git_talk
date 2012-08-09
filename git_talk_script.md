@@ -177,3 +177,14 @@
     git mv README README.txt
     git status
     git commit -m "Rename README to README.txt"
+
+## Commit-History betrachten
+
+    git log
+    git log -p
+    git log --stat
+    git log --pretty=oneline
+    git log --pretty=format:"%h - %an, %ar : %s"
+    git log --pretty=format:"%h %s" --graph
+    git log --since=2.weeks --until=5.minute
+    git log -1
