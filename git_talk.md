@@ -139,6 +139,28 @@
  + Half-byte orientierte Bytedateien in network order
 
 ---
+# Git konfigurieren
+ + Konfiguration geschieht mit `git config`
+ + Manipulation von 3 verschiedenen Dateien:
+    * `/etc/gitconfig`: Systemweite Konfiguration (`--system`)
+    * `$HOME/.gitconfig`: globale Konfiguration (`--global`)
+    * `$REPO_PATH/.git/config`: repo-spezifische Konfiguration
+
+---
+# Git konfigurieren
+ + Dinge die vorm ersten Einsatz (global) konfiguriert werden sollten:
+    * Identität: `user.name` und `user.email`
+    * Editor: `core.editor`
+    * Diff-Editor: `merge.tool`
+ + Nice to have:
+    * Farbe: `git config --global color.ui true`
+    * Password caching: `git config --global credential.helper 'cache --timeout=3600'`
+    * Trailing Spaces entfernen:
+
+            git config --global core.whitespace trailing-space
+            git config --global apply.whitespace fix
+
+---
 # Literatur
  + <a href="http://git-scm.com/book">Pro Git, *Scott Chacon*</a>
  + <a href="http://git-scm.com/docs">Manpages</a> (`man git [<command>]`)

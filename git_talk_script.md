@@ -103,3 +103,19 @@
         git gc
         find .git/objects -type f
         git verify-pack -v .git/objects/pack/pack-6fd552eb8625bd7155787d8424fcd684d0817880.idx
+
+## Git konfigurieren
+
+    git config --global user.name "John Doe"
+    git config --global user.email johndoe@example.com
+    git config --global core.editor vim
+    git config --global merge.tool meld
+    git config --global color.ui true
+    git config --global credential.helper 'cache --timeout=3600'
+    git config --global core.whitespace trailing-space
+    git config --global apply.whitespace fix
+
+ * Konfiguration zeigen:
+
+        git config --list
+        git config user.name
