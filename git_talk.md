@@ -155,6 +155,7 @@
  + Nice to have:
     * Farbe: `git config --global color.ui true`
     * Password caching: `git config --global credential.helper 'cache --timeout=3600'`
+    * Aliases: `git config --global alias.ci commit`
     * Trailing Spaces entfernen:
 
             git config --global core.whitespace trailing-space

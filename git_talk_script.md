@@ -114,6 +114,7 @@
     git config --global credential.helper 'cache --timeout=3600'
     git config --global core.whitespace trailing-space
     git config --global apply.whitespace fix
+    git config --global alias.ci commit
 
  * Konfiguration zeigen:
 
