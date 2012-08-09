@@ -161,6 +161,24 @@
             git config --global apply.whitespace fix
 
 ---
+# Git-Repositories
+
+ * Repository lokal erstellen
+
+        git init
+        git init --bare
+
+ * entferntes Repository herunterladen
+
+        git clone <url> [dir]
+
+    + Git unterstützt mehrere Protokolle
+        - lokales Dateisystem: `git clone <path>`
+        - HTTP/HTTPS (The *dumb* protocol): `git clone http[s]://<host>/<path>`
+        - Git-Protocol (unauthentifiziert): `git clone git://<host>/<path>`
+        - SSH (authentifiziert): `git clone [<username>@]<host>:<path>`
+
+---
 # Literatur
  + <a href="http://git-scm.com/book">Pro Git, *Scott Chacon*</a>
  + <a href="http://git-scm.com/docs">Manpages</a> (`man git [<command>]`)
