@@ -124,3 +124,56 @@
 ## Git-Repository
 ### Erstellen
 ### Existierendes runterladen
+
+## Änderungen aufzeichnen
+
+    git clone git://github.com/schacon/simplegit-progit.git
+    cd simplegit-progit/
+    git status
+    touch LICENSE
+    git status
+    git add LICENSE
+    git status
+    vim README
+    git status
+    echo "*~" >> .gitignore # Folie wechseln
+    git status
+    git add .gitignore
+    git add README
+    git status
+    vim README
+    git status
+    git help add
+    vim README
+    git add -p
+    git status
+
+    git diff
+    git diff --cached
+
+    git commit # commit message falsch schreiben, Folie wechseln
+    git commit --amend
+    git add -p
+    git diff
+    git reset HEAD README
+    git add -p
+    git diff
+    git commit --amend
+    git status
+    git diff
+    git add -i
+    git commit -m "Add just an example"
+    git commit -a -m "Add another example"
+
+    rm LICENSE
+    git status
+    git checkout -f
+    ls
+    git status
+    git rm LICENSE
+    git status
+    git commit -m "Remove the license"
+
+    git mv README README.txt
+    git status
+    git commit -m "Rename README to README.txt"

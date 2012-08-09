@@ -180,6 +180,29 @@
         - SSH (authentifiziert): `git clone [<username>@]<host>:<path>`
 
 ---
+# Änderungen aufzeichnen
+![Lifecycle einer Datei](images/file_lifecycle.png)
+
+---
+# Änderungen aufzeichnen
+## .gitignore
+ * leere Zeilen und Zeilen die mit `#`: ignoriert
+ * Standard <a href="http://en.wikipedia.org/wiki/Glob_(programming)">glob</a>-Pattern (wie in UNIX-Shells)
+ * `/` am Ende: Verzeichnis
+ * `!` am Zeilenanfang: Negation des Patterns
+
+---
+# Änderungen aufzeichnen
+## Commit-Nachrichten
+ * Commit-Nachrichten: Betreff und (optionalen) Körper
+ * Länge des Betreff: *optimal* &leq;50 Zeichen, *maximal* &leq;72 Zeichen
+ * Inhalt des Betreff: kurze Beschreibung der Änderung
+    + Policy: Imperative Formulierung ohne Punkt: „Add method to apply commits“
+ * nach Betreff: Leerzeile
+ * Länge des Körpers: beliebig
+ * Inhalt des Körpers: genauere Beschreibung des Patches und Begründung
+
+---
 # Literatur
  + <a href="http://git-scm.com/book">Pro Git, *Scott Chacon*</a>
  + <a href="http://git-scm.com/docs">Manpages</a> (`git help [<command>]` oder `man git [<command>]`)
