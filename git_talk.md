@@ -243,6 +243,16 @@
    ⇒ Branch-basierte Workflows
 
 ---
+# Branching-Workflow
+ * stabiler master-Branch
+ * mehrere kurzlebige Feature-Branches
+ * Entwicklungs-Branch zum einmergen der Feature-Branches und für
+   Stabilitätstest
+![Gits Branching-Workflow](images/branch_workflow.png)
+
+ * git.git hat z. B. noch *proposed* und *proposed update (pu)*
+
+---
 # Literatur
  + <a href="http://git-scm.com/book">Pro Git, *Scott Chacon*</a>
  + <a href="http://git-scm.com/docs">Manpages</a> (`git help [<command>]` oder `man git [<command>]`)
