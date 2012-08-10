@@ -229,6 +229,19 @@
             <tr><td>…</td>      <td>*(s. git help log)*</td></tr>
         </table>
     </div>
+
+---
+# Branching
+ * Idee: Abspaltung von Hauptentwicklungspfad, ohne diese zu stören <br>
+    ⇒ Ziel: mögliche Wiedervereinigung
+ * in den meisten VCSs: sehr teuer
+ * in Git: Commit-History ist by-design ein DAG <br>
+
+    ![Commit-History-DAG](images/commit_dag.png)
+
+ * „Killer-Feature“ (leichtgewichtig, schnell, …) <br>
+   ⇒ Branch-basierte Workflows
+
 ---
 # Literatur
  + <a href="http://git-scm.com/book">Pro Git, *Scott Chacon*</a>

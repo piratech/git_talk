@@ -206,3 +206,54 @@
     git remote
     git remote rm paul
     git remote
+
+## Branching
+
+    git branch
+    git branch testing
+    git branch
+    git branch -v
+    find .git/refs -type f
+    cat .git/refs/heads/testing
+    git log --pretty=format:"%H" -1
+    git checkout testing
+    git branch
+    git symbolic-ref HEAD
+    vim README.txt
+    git commit -am "Made a change"
+    git checkout master
+    vim README.txt
+    git commit -am "Made another change"
+    git log --graph --branches --pretty=format:"%h %d"
+
+    git checkout -b iss53
+    git branch
+    vim .gitignore
+    git commit -am "Add *.exe to .gitignore"
+    git checkout master
+    git checkout -b hotfix
+    vim .gitignore
+    git commit -am "Add *~ to .gitignore"
+
+    git checkout master
+    git log --graph --branches --pretty=format:"%h %d"
+    git merge hotfix
+    git log --graph --branches --pretty=format:"%h %d"
+    git branch -d hotfix
+    git log --graph --branches --pretty=format:"%h %d"
+    git merge iss53
+    git status
+    cat .gitignore
+    git mergetool
+    git status
+    git commit
+    git log --graph --branches --pretty=format:"%h %d"
+
+    git branch -d testing
+    git branch -D testing
+    git log --graph --branches --pretty=format:"%h %d"
+    git update-ref refs/heads/testing <hash>
+    git log --graph --branches --pretty=format:"%h %d"
+
+    git branch --merged
+    git branch --no-merged
