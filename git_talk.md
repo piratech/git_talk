@@ -289,6 +289,28 @@ Do not do:
  * bereits gepushte commits rebasen (or people will hate you)
 
 ---
+# Mehr Tools
+ * `git reflog`: Log aller lokalen `HEAD`- und Branch-Referenzen
+ * `git add -i`: interaktives Stagen
+ * `git stash`: momentan nicht benötigte Änderungen auf einem Stack ablegen
+ * Rewriting History (nur lokale Commits!!!!!):
+    + `git commit --amend`: aktuelle Index zum letzten Commit + Message ändern
+    + `git rebase -i <commit>`: bearbeiten aller Commits in `<commit>..HEAD`-Range:
+        - neu anordnen, bearbeiten, zusammenführen, ...
+    + `git filter-branch`: bearbeiten von Details in gesamter History:
+        - E-Mail-Adressen in Commits ändern, Dateien löschen, ...
+ * `git blame`: wer hat wann welche Zeile geschrieben?
+ * `git bisect`: Binärsuche nach bugeinführenden Commits
+ * `git submodules`: binde andere Git-Projekte als Unterordner ein
+
+---
+# Noch mehr Tools
+ * `.gitattributs`: pfadspezifische Regeln für Befehle
+ * `.git/hooks`: Skripte die bei bestimmten Git-events ausgeführt werden
+ * `git svn`: Benutze Subversion-Repositories mit Git
+ * `git fast-import`: Portiere Repositories anderer VCS nach Git
+
+---
 # Literatur
  + <a href="http://git-scm.com/book">Pro Git, *Scott Chacon*</a>
  + <a href="http://git-scm.com/docs">Manpages</a> (`git help [<command>]` oder `man git [<command>]`)
