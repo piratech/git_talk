@@ -256,6 +256,18 @@
  * git.git hat z. B. noch *proposed* und *proposed update (pu)*
 
 ---
+# Remote Branches
+ * Format der Namen: `{remote}/{branch}`
+ * `git pull {remote} {branch}` <br>
+   ≙ `git fetch {remote} {branch} && git merge {remote}/{branch}`
+ * Remote branch mit aktuellem Branch 
+   aktualisieren mit `git push {remote} {branch}`
+ * Tracking branches:
+    + lokale Branches die einem Remote Branch folgen
+    + neuer lokaler: `git checkout -b {local branch} {remote}/{branch}`
+    + bestehende (ab 1.6.2): `git checkout --track {remote}/{branch}`
+ * `git push {remote} :{branch}` löscht remote branch
+
 # Literatur
  + <a href="http://git-scm.com/book">Pro Git, *Scott Chacon*</a>
  + <a href="http://git-scm.com/docs">Manpages</a> (`git help [<command>]` oder `man git [<command>]`)

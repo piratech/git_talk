@@ -97,6 +97,7 @@
             git fetch
             find .git/refs/remotes/
             cat .git/refs/remotes/origin/master
+            (git remote rm)
  
  * Git Packfiles
 
