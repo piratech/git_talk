@@ -258,3 +258,16 @@
 
     git branch --merged
     git branch --no-merged
+
+# Rebasing
+    git checkout client
+    git rebase master
+    git checkout master
+    git merge client
+    git rebase master server
+    git checkout master
+    git merge server
+    git branch -d client
+    git branch -d server
+    git rebase --onto master server client
+

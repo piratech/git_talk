@@ -268,6 +268,27 @@
     + bestehende (ab 1.6.2): `git checkout --track {remote}/{branch}`
  * `git push {remote} :{branch}` löscht remote branch
 
+---
+# Rebasing
+![Fucked up branch tree](images/fucked_up_tree.png)
+
+---
+# Rebasing
+![Fucked up branch tree (rebase 1)](images/fucked_up_tree_rebase1.png)
+
+---
+# Rebasing
+![Fucked up branch tree (rebase 2)](images/fucked_up_tree_rebase2.png)
+
+---
+# Rebasing
+![Fucked up branch tree (result)](images/fucked_up_tree_result.png)
+
+Do not do:
+
+ * bereits gepushte commits rebasen (or people will hate you)
+
+---
 # Literatur
  + <a href="http://git-scm.com/book">Pro Git, *Scott Chacon*</a>
  + <a href="http://git-scm.com/docs">Manpages</a> (`git help [<command>]` oder `man git [<command>]`)
