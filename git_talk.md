@@ -256,7 +256,7 @@
 # Literatur
  + <a href="http://git-scm.com/book">Pro Git, *Scott Chacon*</a>
  + <a href="http://git-scm.com/docs">Manpages</a> (`git help [<command>]` oder `man git [<command>]`)
- + All pictures are by Scott Chacon's from Pro Git and under
+ + All pictures are from Scott Chacon's Pro Git and under
     <a href="http://creativecommons.org/licenses/by-nc-sa/3.0/">CC BY-NC-SA 3.0</a>
     License
  + This presentation is published a under <a href="http://creativecommons.org/licenses/by-nc-sa/3.0/">CC BY-NC-SA 3.0</a>
