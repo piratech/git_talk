@@ -127,6 +127,9 @@
     * entfernte Repositories (`refs/remotes/<repo_name>/<branchname>`)
  + Unterschied zu Referenzen und Tag-Objekten (annotierte Tags):
     Referenzen können verschoben werden
+ + „implizite“ Referenzen: 
+    * short SHA, RefLog-Kurznamen (s. reflog), Vorfahren-Schreibweise (`HEAD^[n]`
+      und `HEAT~[n]`), Ranges (`<commit>..<commit>`, `<commit>...<commit>`)
 
 ---
 # Packfiles
