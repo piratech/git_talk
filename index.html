@@ -1,0 +1,1512 @@
+<!DOCTYPE html>
+<!--
+  Copyright 2010 Google Inc.
+
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+
+     http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+
+  Original slides: Marcin Wichary (mwichary@google.com)
+  Modifications: Ernest Delgado (ernestd@google.com)
+                 Alex Russell (slightlyoff@chromium.org)
+
+  landslide modifications: Adam Zapletal (adamzap@gmail.com)
+                           Nicolas Perriault (nperriault@gmail.com)
+-->
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Git - Distributed Version Control</title>
+    <!-- Styles -->
+    
+    <link rel="stylesheet" media="print" href="file:///usr/local/lib/python2.7/dist-packages/landslide-1.0.1-py2.7.egg/landslide/themes/default/css/print.css">
+    <link rel="stylesheet" media="screen, projection" href="file:///usr/local/lib/python2.7/dist-packages/landslide-1.0.1-py2.7.egg/landslide/themes/default/css/screen.css">
+    
+    
+    <!-- /Styles -->
+    <!-- Javascripts -->
+    
+    <script type="text/javascript" src="file:///usr/local/lib/python2.7/dist-packages/landslide-1.0.1-py2.7.egg/landslide/themes/default/js/slides.js"></script>
+    
+    
+    <!-- /Javascripts -->
+</head>
+<body>
+  <div id="blank"></div>
+  <div class="presentation">
+    <div id="current_presenter_notes">
+      <div id="presenter_note"></div>
+    </div>
+    <div class="slides">
+      
+      <!-- slide source: git_talk.md -->
+      <div class="slide-wrapper">
+        <div class="slide">
+          <div class="inner">
+            
+            <header><h1>Git - Distributed Version Control</h1></header>
+            
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="git_talk.md">git_talk.md</a>
+            </aside>
+            
+            <aside class="page_number">
+              1/31
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: git_talk.md -->
+      <div class="slide-wrapper">
+        <div class="slide">
+          <div class="inner">
+            
+            <header><h1>Was ist Versionskontrolle?</h1></header>
+            
+            
+            <section><ul>
+<li>Dokumentation von Veränderung von Dateien über der Zeit</li>
+<li>Wiederherstellbarkeit früherer Versionen <br> 
+   ⇒ „If you skrew things up […], you can easily recover“ – <em>pro Git</em></li>
+<li>Simpelste Form der Versionskontrolle: Kopiere über Zwischenversionen
+   von Dateien in ein „Backup“-Verzeichnis</li>
+</ul></section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="git_talk.md">git_talk.md</a>
+            </aside>
+            
+            <aside class="page_number">
+              2/31
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: git_talk.md -->
+      <div class="slide-wrapper">
+        <div class="slide">
+          <div class="inner">
+            
+            <header><h1>Zentrale Versionskontrollsysteme (CVCS)</h1></header>
+            
+            
+            <section><ul>
+<li>z. B. CVS, Subversion, Perforce</li>
+<li>ein zentrales Repository, Clients checken Dateien von dort aus und
+   commiten nach dort</li>
+</ul>
+<p><img alt="Zentrale Versionskontrolle" src="file:///home/martin/piratech/git_talk/images/cvcs.png" /></p></section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="git_talk.md">git_talk.md</a>
+            </aside>
+            
+            <aside class="page_number">
+              3/31
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: git_talk.md -->
+      <div class="slide-wrapper">
+        <div class="slide">
+          <div class="inner">
+            
+            <header><h1>Zentrale Versionskontrolle</h1></header>
+            
+            
+            <section><h2>Vorteile</h2>
+<ul>
+<li>Jeder weiß, was jeder gerade tut</li>
+<li>Administratoren können kontrolieren, wer was darf und wer was nicht</li>
+</ul>
+<h2>Nachteile</h2>
+<ul>
+<li>Single Point of Failure</li>
+<li>Verbindung zum zentralen Server ist zwingend notwendig</li>
+</ul></section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="git_talk.md">git_talk.md</a>
+            </aside>
+            
+            <aside class="page_number">
+              4/31
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: git_talk.md -->
+      <div class="slide-wrapper">
+        <div class="slide">
+          <div class="inner">
+            
+            <header><h1>Verteilte Versionskontrollsystem (DVCS)</h1></header>
+            
+            
+            <section><ul>
+<li>z. B. Git, Mercurial, Bazaar</li>
+<li>Clients checken Dateien nicht aus, sondern spiegeln das gesamte 
+   Repository</li>
+</ul>
+<p><img alt="Dezentrale Versionskontrolle" src="file:///home/martin/piratech/git_talk/images/dvcs.png" /></p></section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="git_talk.md">git_talk.md</a>
+            </aside>
+            
+            <aside class="page_number">
+              5/31
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: git_talk.md -->
+      <div class="slide-wrapper">
+        <div class="slide">
+          <div class="inner">
+            
+            <header><h1>Eine kurze Geschichtsstunde</h1></header>
+            
+            
+            <section><ul>
+<li>Linux-Kernel wurde bis 2002 mit Patchdateien via E-Mail 
+   versionskontrolliert</li>
+<li>ab 2002: proprietäres DVCS BitKeeper</li>
+<li>2005: Anspannung der Beziehung zwischen Linux-Community und 
+   BitKeeper-Entwickler
+   ⇒ Linus Torvald entwickelt als Wochenendprojekt Git als Alternative</li>
+<li>Anforderungen:<ul>
+<li>Geschwindigkeit</li>
+<li>Einfaches Design</li>
+<li>Unterstützung nicht-linearer Entwicklung</li>
+<li>komplett verteilt</li>
+<li>Unterstützung sehr großer Projekte</li>
+</ul>
+</li>
+</ul></section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="git_talk.md">git_talk.md</a>
+            </aside>
+            
+            <aside class="page_number">
+              6/31
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: git_talk.md -->
+      <div class="slide-wrapper">
+        <div class="slide">
+          <div class="inner">
+            
+            <header><h1>Grundlagen</h1></header>
+            
+            
+            <section><ul>
+<li>Snapshots, keine Diffs</li>
+</ul>
+<p><img alt="Snapshots" src="file:///home/martin/piratech/git_talk/images/snapshots.png" /></p></section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="git_talk.md">git_talk.md</a>
+            </aside>
+            
+            <aside class="page_number">
+              7/31
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: git_talk.md -->
+      <div class="slide-wrapper">
+        <div class="slide">
+          <div class="inner">
+            
+            <header><h1>Grundlagen</h1></header>
+            
+            
+            <section><ul>
+<li>(fast) alle Operationen sind lokal (Ausnahme: <code>fetch</code> und <code>push</code>
+   und Erweiterungen)</li>
+<li>Checksummen-basiertes speichern (SHA1-Summen sind Objekt-ID)</li>
+<li>nur Hinzufügen von Daten erlaubt</li>
+<li>Dateien können 3 Zustände in einem Git-Repository haben:<ul>
+<li><strong>commited:</strong> Datei in Datenbak gespeichert</li>
+<li><strong>verändert:</strong> Datei verändert, aber noch nicht commited</li>
+<li><strong>staged:</strong> veränderte Datei, die zum commiten markiert wurde</li>
+</ul>
+</li>
+<li>⇒ Drei Hauptsektionen eines Git-Projekts:<ul>
+<li>Git-Verzeichnis</li>
+<li>Arbeits-Verzeichnis</li>
+<li>Staging-Area</li>
+</ul>
+</li>
+</ul></section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="git_talk.md">git_talk.md</a>
+            </aside>
+            
+            <aside class="page_number">
+              8/31
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: git_talk.md -->
+      <div class="slide-wrapper">
+        <div class="slide">
+          <div class="inner">
+            
+            <header><h1>Grundlagen</h1></header>
+            
+            
+            <section><p><img alt="Hauptoperationen" src="file:///home/martin/piratech/git_talk/images/local_operations.png" /></p></section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="git_talk.md">git_talk.md</a>
+            </aside>
+            
+            <aside class="page_number">
+              9/31
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: git_talk.md -->
+      <div class="slide-wrapper">
+        <div class="slide">
+          <div class="inner">
+            
+            <header><h1>Plumbing vs. Porcelain</h1></header>
+            
+            
+            <section><ul>
+<li><em>git.git</em> war ursprünglich nur als Toolkit für 
+   Versionskontrollsysteme gedacht <br>
+   ⇒ Viele Low-Level-Befehle, die aneinaneder gekettet 
+     benutzerfreundliche Befehle ergeben</li>
+<li>
+<p><strong>Plumbing</strong>: Low-Level-Befehle</p>
+<pre><code>git cat-file
+git hash-object
+git update-index
+git write-tree
+...
+</code></pre>
+</li>
+<li>
+<p><strong>Porcelain</strong>: benutzerfreundlichere Befehle</p>
+<pre><code>git checkout
+git commit
+git remote
+...
+</code></pre>
+</li>
+</ul></section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="git_talk.md">git_talk.md</a>
+            </aside>
+            
+            <aside class="page_number">
+              10/31
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: git_talk.md -->
+      <div class="slide-wrapper">
+        <div class="slide">
+          <div class="inner">
+            
+            <header><h1>Git-Objekte</h1></header>
+            
+            
+            <section><ul>
+<li>Alles in einem Git-Repository ist ein Objekt (<code>.git/objects</code>)</li>
+<li>Objekte werden durch eine eindeutige ID (ihre SHA1-Checksumme)
+   identifiziert</li>
+<li>Vier Arten von Objekte:<ul>
+<li><strong>Blob:</strong> Abbild des Inhalts einer Datei</li>
+<li><strong>Tree:</strong> zeigt auf Menge von Blob- und anderen Tree-Objekten 
+    (äquivalent zu Verzeichnis in Dateisystemen) und benennt sie 
+    (= Dateinamen)</li>
+<li><strong>Commit:</strong> zeigt auf ein Tree-Objekt, <em>mindestens</em> ein 
+    Eltern-Commit-Objekt und hat Eigenschaften wie Autor, Commiter, 
+    Commit-Nachricht und Zeitstempel</li>
+<li><strong>Tag:</strong> zeigt auf Objekt und Eigenschaften wie Tagger,
+    Zeitstempel und Tag-Nachricht</li>
+</ul>
+</li>
+</ul></section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="git_talk.md">git_talk.md</a>
+            </aside>
+            
+            <aside class="page_number">
+              11/31
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: git_talk.md -->
+      <div class="slide-wrapper">
+        <div class="slide">
+          <div class="inner">
+            
+            <header><h1>Git-Objekte</h1></header>
+            
+            
+            <section><p><img alt="Git Objekte" src="file:///home/martin/piratech/git_talk/images/object_tree.png" /></p></section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="git_talk.md">git_talk.md</a>
+            </aside>
+            
+            <aside class="page_number">
+              12/31
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: git_talk.md -->
+      <div class="slide-wrapper">
+        <div class="slide">
+          <div class="inner">
+            
+            <header><h1>Git-Referenzen</h1></header>
+            
+            
+            <section><ul>
+<li>Obvious flaw is obvious: 160-Bit-Hashes sind schwer zu merken<br>
+    ⇒ Referenzen </li>
+<li>Dateien im <code>.git/refs</code>-Verzeichnis mit einem Hashwert oder 
+ <br />
+<code>ref: refs/...</code> als Inhalt)<ul>
+<li>Branches (<code>refs/heads/&lt;name&gt;</code>)</li>
+<li>Der aktuelle Kopf (<code>refs/HEAD</code>)</li>
+<li>leichtgewichtige Tags (<code>refs/tags/&lt;name&gt;</code>)</li>
+<li>entfernte Repositories (<code>refs/remotes/&lt;repo_name&gt;/&lt;branchname&gt;</code>)</li>
+</ul>
+</li>
+<li>Unterschied zu Referenzen und Tag-Objekten (annotierte Tags):
+    Referenzen können verschoben werden</li>
+<li>„implizite“ Referenzen: <ul>
+<li>short SHA, RefLog-Kurznamen (s. reflog), Vorfahren-Schreibweise (<code>HEAD^[n]</code>
+  und <code>HEAT~[n]</code>), Ranges (<code>&lt;commit&gt;..&lt;commit&gt;</code>, <code>&lt;commit&gt;...&lt;commit&gt;</code>)</li>
+</ul>
+</li>
+</ul></section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="git_talk.md">git_talk.md</a>
+            </aside>
+            
+            <aside class="page_number">
+              13/31
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: git_talk.md -->
+      <div class="slide-wrapper">
+        <div class="slide">
+          <div class="inner">
+            
+            <header><h1>Packfiles</h1></header>
+            
+            
+            <section><ul>
+<li><code>.git/objects/pack</code>?</li>
+<li><code>[0-9]{2}/</code>-Objekte sind so genannte loose objects</li>
+<li>Snapshots werden mit der Zeit sehr groß (besonders bei großen Dateien)</li>
+<li><code>git gc</code> komprimiert mit Delta- und zlib-Komprimierung</li>
+<li>Speichert Ergebnisse in <code>pack-*.idx</code> (ein Index der komprimierten
+   Objekte) und <code>pack-*.pack</code> (die komprimierten Objekte)</li>
+<li>Half-byte orientierte Bytedateien in network order</li>
+</ul></section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="git_talk.md">git_talk.md</a>
+            </aside>
+            
+            <aside class="page_number">
+              14/31
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: git_talk.md -->
+      <div class="slide-wrapper">
+        <div class="slide">
+          <div class="inner">
+            
+            <header><h1>Git konfigurieren</h1></header>
+            
+            
+            <section><ul>
+<li>Konfiguration geschieht mit <code>git config</code></li>
+<li>Manipulation von 3 verschiedenen Dateien:<ul>
+<li><code>/etc/gitconfig</code>: Systemweite Konfiguration (<code>--system</code>)</li>
+<li><code>$HOME/.gitconfig</code>: globale Konfiguration (<code>--global</code>)</li>
+<li><code>$REPO_PATH/.git/config</code>: repo-spezifische Konfiguration</li>
+</ul>
+</li>
+</ul></section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="git_talk.md">git_talk.md</a>
+            </aside>
+            
+            <aside class="page_number">
+              15/31
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: git_talk.md -->
+      <div class="slide-wrapper">
+        <div class="slide">
+          <div class="inner">
+            
+            <header><h1>Git konfigurieren</h1></header>
+            
+            
+            <section><ul>
+<li>Dinge die vorm ersten Einsatz (global) konfiguriert werden sollten:<ul>
+<li>Identität: <code>user.name</code> und <code>user.email</code></li>
+<li>Editor: <code>core.editor</code></li>
+<li>Diff-Editor: <code>merge.tool</code></li>
+</ul>
+</li>
+<li>Nice to have:<ul>
+<li>Farbe: <code>git config --global color.ui true</code></li>
+<li>Password caching: <code>git config --global credential.helper 'cache --timeout=3600'</code></li>
+<li>Aliases: <code>git config --global alias.ci commit</code></li>
+<li>
+<p>Trailing Spaces entfernen:</p>
+<pre><code>git config --global core.whitespace trailing-space
+git config --global apply.whitespace fix
+</code></pre>
+</li>
+</ul>
+</li>
+</ul></section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="git_talk.md">git_talk.md</a>
+            </aside>
+            
+            <aside class="page_number">
+              16/31
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: git_talk.md -->
+      <div class="slide-wrapper">
+        <div class="slide">
+          <div class="inner">
+            
+            <header><h1>Git-Repositories</h1></header>
+            
+            
+            <section><ul>
+<li>
+<p>Repository lokal erstellen</p>
+<pre><code>git init
+git init --bare
+</code></pre>
+</li>
+<li>
+<p>entferntes Repository herunterladen</p>
+<pre><code>git clone &lt;url&gt; [dir]
+</code></pre>
+<ul>
+<li>Git unterstützt mehrere Protokolle<ul>
+<li>lokales Dateisystem: <code>git clone &lt;path&gt;</code></li>
+<li>HTTP/HTTPS (The <em>dumb</em> protocol): <code>git clone http[s]://&lt;host&gt;/&lt;path&gt;</code></li>
+<li>Git-Protocol (unauthentifiziert): <code>git clone git://&lt;host&gt;/&lt;path&gt;</code></li>
+<li>SSH (authentifiziert): <code>git clone [&lt;username&gt;@]&lt;host&gt;:&lt;path&gt;</code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul></section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="git_talk.md">git_talk.md</a>
+            </aside>
+            
+            <aside class="page_number">
+              17/31
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: git_talk.md -->
+      <div class="slide-wrapper">
+        <div class="slide">
+          <div class="inner">
+            
+            <header><h1>Änderungen aufzeichnen</h1></header>
+            
+            
+            <section><p><img alt="Lifecycle einer Datei" src="file:///home/martin/piratech/git_talk/images/file_lifecycle.png" /></p></section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="git_talk.md">git_talk.md</a>
+            </aside>
+            
+            <aside class="page_number">
+              18/31
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: git_talk.md -->
+      <div class="slide-wrapper">
+        <div class="slide">
+          <div class="inner">
+            
+            <header><h1>Änderungen aufzeichnen</h1></header>
+            
+            
+            <section><h2>.gitignore</h2>
+<ul>
+<li>leere Zeilen und Zeilen die mit <code>#</code>: ignoriert</li>
+<li>Standard <a href="http://en.wikipedia.org/wiki/Glob_(programming)">glob</a>-Pattern (wie in UNIX-Shells)</li>
+<li><code>/</code> am Ende: Verzeichnis</li>
+<li><code>!</code> am Zeilenanfang: Negation des Patterns</li>
+</ul></section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="git_talk.md">git_talk.md</a>
+            </aside>
+            
+            <aside class="page_number">
+              19/31
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: git_talk.md -->
+      <div class="slide-wrapper">
+        <div class="slide">
+          <div class="inner">
+            
+            <header><h1>Änderungen aufzeichnen</h1></header>
+            
+            
+            <section><h2>Commit-Nachrichten</h2>
+<ul>
+<li>Commit-Nachrichten: Betreff und (optionalen) Körper</li>
+<li>Länge des Betreff: <em>optimal</em> &leq;50 Zeichen, <em>maximal</em> &leq;72 Zeichen</li>
+<li>Inhalt des Betreff: kurze Beschreibung der Änderung<ul>
+<li>Policy: Imperative Formulierung ohne Punkt: „Add method to apply commits“</li>
+</ul>
+</li>
+<li>nach Betreff: Leerzeile</li>
+<li>Länge des Körpers: beliebig</li>
+<li>Inhalt des Körpers: genauere Beschreibung des Patches und Begründung</li>
+</ul></section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="git_talk.md">git_talk.md</a>
+            </aside>
+            
+            <aside class="page_number">
+              20/31
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: git_talk.md -->
+      <div class="slide-wrapper">
+        <div class="slide">
+          <div class="inner">
+            
+            <header><h1>Commit-History betrachten</h1></header>
+            
+            
+            <section><ul>
+<li>Manipulation der Ausgabe mit <code>git log --pretty=format:&lt;format string&gt;</code>
+    <div>
+        <table>
+            <tr style="border-bottom: 1px solid black">
+                <th style="text-align: left;">Option &nbsp;</th>
+                <th style="text-align: left;">Beschreibung der Ausgabe</th>
+            </tr>
+            <tr><td>%H</td>     <td>Commit-Hash</td></tr>
+            <tr><td>%h</td>     <td>Abgekürzter Commit-Hash</td></tr>
+            <tr><td>%T</td>     <td>Tree-Hash</td></tr>
+            <tr><td>%t</td>     <td>Abgekürzter Tree-Hash</td></tr>
+            <tr><td>%P</td>     <td>Eltern-Hashes</td></tr>
+            <tr><td>%p</td>     <td>Abgekürzte Eltern-Hashes</td></tr>
+            <tr><td>%an</td>    <td>Name des Autors</td></tr>
+            <tr><td>%ae</td>    <td>E-Mailadresse des Autors</td></tr>
+            <tr><td>%ad</td>    <td>Datum des Authors (Format folgt der „–date=“-Option)</td></tr>
+            <tr><td>%ar</td>    <td>relatives Datum des Authors</td></tr>
+            <tr><td>%cn</td>    <td>Name des Committers</td></tr>
+            <tr><td>%ce</td>    <td>E-Mailadresse des Committers</td></tr>
+            <tr><td>%cd</td>    <td>Datum des Committers</td></tr>
+            <tr><td>%cr</td>    <td>relatives Datum des Committers</td></tr>
+            <tr><td>%s</td>     <td>Betreff der Commit-Nachricht</td></tr>
+            <tr><td>…</td>      <td><em>(s. git help log)</em></td></tr>
+        </table>
+    </div></li>
+</ul></section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="git_talk.md">git_talk.md</a>
+            </aside>
+            
+            <aside class="page_number">
+              21/31
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: git_talk.md -->
+      <div class="slide-wrapper">
+        <div class="slide">
+          <div class="inner">
+            
+            <header><h1>Branching</h1></header>
+            
+            
+            <section><ul>
+<li>Idee: Abspaltung von Hauptentwicklungspfad, ohne diese zu stören <br>
+    ⇒ Ziel: mögliche Wiedervereinigung</li>
+<li>in den meisten VCSs: sehr teuer</li>
+<li>
+<p>in Git: Commit-History ist by-design ein DAG <br></p>
+<p><img alt="Commit-History-DAG" src="file:///home/martin/piratech/git_talk/images/commit_dag.png" /></p>
+</li>
+<li>
+<p>„Killer-Feature“ (leichtgewichtig, schnell, …) <br>
+   ⇒ Branch-basierte Workflows</p>
+</li>
+</ul></section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="git_talk.md">git_talk.md</a>
+            </aside>
+            
+            <aside class="page_number">
+              22/31
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: git_talk.md -->
+      <div class="slide-wrapper">
+        <div class="slide">
+          <div class="inner">
+            
+            <header><h1>Branching-Workflow</h1></header>
+            
+            
+            <section><ul>
+<li>stabiler master-Branch</li>
+<li>mehrere kurzlebige Feature-Branches</li>
+<li>
+<p>Entwicklungs-Branch zum einmergen der Feature-Branches und für
+   Stabilitätstest
+<img alt="Gits Branching-Workflow" src="file:///home/martin/piratech/git_talk/images/branch_workflow.png" /></p>
+</li>
+<li>
+<p>git.git hat z. B. noch <em>proposed</em> und <em>proposed update (pu)</em></p>
+</li>
+</ul></section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="git_talk.md">git_talk.md</a>
+            </aside>
+            
+            <aside class="page_number">
+              23/31
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: git_talk.md -->
+      <div class="slide-wrapper">
+        <div class="slide">
+          <div class="inner">
+            
+            <header><h1>Remote Branches</h1></header>
+            
+            
+            <section><ul>
+<li>Format der Namen: <code>{remote}/{branch}</code></li>
+<li><code>git pull {remote} {branch}</code> <br>
+   ≙ <code>git fetch {remote} {branch} &amp;&amp; git merge {remote}/{branch}</code></li>
+<li>Remote branch mit aktuellem Branch 
+   aktualisieren mit <code>git push {remote} {branch}</code></li>
+<li>Tracking branches:<ul>
+<li>lokale Branches die einem Remote Branch folgen</li>
+<li>neuer lokaler: <code>git checkout -b {local branch} {remote}/{branch}</code></li>
+<li>bestehende (ab 1.6.2): <code>git checkout --track {remote}/{branch}</code></li>
+</ul>
+</li>
+<li><code>git push {remote} :{branch}</code> löscht remote branch</li>
+</ul></section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="git_talk.md">git_talk.md</a>
+            </aside>
+            
+            <aside class="page_number">
+              24/31
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: git_talk.md -->
+      <div class="slide-wrapper">
+        <div class="slide">
+          <div class="inner">
+            
+            <header><h1>Rebasing</h1></header>
+            
+            
+            <section><p><img alt="Fucked up branch tree" src="file:///home/martin/piratech/git_talk/images/fucked_up_tree.png" /></p></section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="git_talk.md">git_talk.md</a>
+            </aside>
+            
+            <aside class="page_number">
+              25/31
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: git_talk.md -->
+      <div class="slide-wrapper">
+        <div class="slide">
+          <div class="inner">
+            
+            <header><h1>Rebasing</h1></header>
+            
+            
+            <section><p><img alt="Fucked up branch tree (rebase 1)" src="file:///home/martin/piratech/git_talk/images/fucked_up_tree_rebase1.png" /></p></section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="git_talk.md">git_talk.md</a>
+            </aside>
+            
+            <aside class="page_number">
+              26/31
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: git_talk.md -->
+      <div class="slide-wrapper">
+        <div class="slide">
+          <div class="inner">
+            
+            <header><h1>Rebasing</h1></header>
+            
+            
+            <section><p><img alt="Fucked up branch tree (rebase 2)" src="file:///home/martin/piratech/git_talk/images/fucked_up_tree_rebase2.png" /></p></section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="git_talk.md">git_talk.md</a>
+            </aside>
+            
+            <aside class="page_number">
+              27/31
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: git_talk.md -->
+      <div class="slide-wrapper">
+        <div class="slide">
+          <div class="inner">
+            
+            <header><h1>Rebasing</h1></header>
+            
+            
+            <section><p><img alt="Fucked up branch tree (result)" src="file:///home/martin/piratech/git_talk/images/fucked_up_tree_result.png" /></p>
+<p>Do not do:</p>
+<ul>
+<li>bereits gepushte commits rebasen (or people will hate you)</li>
+</ul></section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="git_talk.md">git_talk.md</a>
+            </aside>
+            
+            <aside class="page_number">
+              28/31
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: git_talk.md -->
+      <div class="slide-wrapper">
+        <div class="slide">
+          <div class="inner">
+            
+            <header><h1>Mehr Tools</h1></header>
+            
+            
+            <section><ul>
+<li><code>git reflog</code>: Log aller lokalen <code>HEAD</code>- und Branch-Referenzen</li>
+<li><code>git add -i</code>: interaktives Stagen</li>
+<li><code>git stash</code>: momentan nicht benötigte Änderungen auf einem Stack ablegen</li>
+<li>Rewriting History (nur lokale Commits!!!!!):<ul>
+<li><code>git commit --amend</code>: aktuelle Index zum letzten Commit + Message ändern</li>
+<li><code>git rebase -i <commit></code>: bearbeiten aller Commits in <code><commit>..HEAD</code>-Range:<ul>
+<li>neu anordnen, bearbeiten, zusammenführen, ...</li>
+</ul>
+</li>
+<li><code>git filter-branch</code>: bearbeiten von Details in gesamter History:<ul>
+<li>E-Mail-Adressen in Commits ändern, Dateien löschen, ...</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><code>git blame</code>: wer hat wann welche Zeile geschrieben?</li>
+<li><code>git bisect</code>: Binärsuche nach bugeinführenden Commits</li>
+<li><code>git submodules</code>: binde andere Git-Projekte als Unterordner ein</li>
+</ul></section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="git_talk.md">git_talk.md</a>
+            </aside>
+            
+            <aside class="page_number">
+              29/31
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: git_talk.md -->
+      <div class="slide-wrapper">
+        <div class="slide">
+          <div class="inner">
+            
+            <header><h1>Noch mehr Tools</h1></header>
+            
+            
+            <section><ul>
+<li><code>.gitattributs</code>: pfadspezifische Regeln für Befehle</li>
+<li><code>.git/hooks</code>: Skripte die bei bestimmten Git-events ausgeführt werden</li>
+<li><code>git svn</code>: Benutze Subversion-Repositories mit Git</li>
+<li><code>git fast-import</code>: Portiere Repositories anderer VCS nach Git</li>
+</ul></section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="git_talk.md">git_talk.md</a>
+            </aside>
+            
+            <aside class="page_number">
+              30/31
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: git_talk.md -->
+      <div class="slide-wrapper">
+        <div class="slide">
+          <div class="inner">
+            
+            <header><h1>Literatur</h1></header>
+            
+            
+            <section><ul>
+<li><a href="http://git-scm.com/book">Pro Git, <em>Scott Chacon</em></a></li>
+<li><a href="http://git-scm.com/docs">Manpages</a> (<code>git help [&lt;command&gt;]</code> oder <code>man git [&lt;command&gt;]</code>)</li>
+<li>All pictures are from Scott Chacon's Pro Git and under
+    <a href="http://creativecommons.org/licenses/by-nc-sa/3.0/">CC BY-NC-SA 3.0</a>
+    License</li>
+<li>This presentation is published a under <a href="http://creativecommons.org/licenses/by-nc-sa/3.0/">CC BY-NC-SA 3.0</a>
+    License</li>
+</ul></section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="git_talk.md">git_talk.md</a>
+            </aside>
+            
+            <aside class="page_number">
+              31/31
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+  
+  <div id="toc" class="sidebar hidden">
+    <h2>Table of Contents</h2>
+    <table>
+      <caption>Table of Contents</caption>
+      
+      <tr id="toc-row-1">
+        <th><a href="#slide1">Git - Distributed Version Control</a></th>
+        <td><a href="#slide1">1</a></td>
+      </tr>
+      
+      
+      <tr id="toc-row-2">
+        <th><a href="#slide2">Was ist Versionskontrolle?</a></th>
+        <td><a href="#slide2">2</a></td>
+      </tr>
+      
+      
+      <tr id="toc-row-3">
+        <th><a href="#slide3">Zentrale Versionskontrollsysteme (CVCS)</a></th>
+        <td><a href="#slide3">3</a></td>
+      </tr>
+      
+      
+      <tr id="toc-row-4">
+        <th><a href="#slide4">Zentrale Versionskontrolle</a></th>
+        <td><a href="#slide4">4</a></td>
+      </tr>
+      
+      
+      <tr id="toc-row-5">
+        <th><a href="#slide5">Verteilte Versionskontrollsystem (DVCS)</a></th>
+        <td><a href="#slide5">5</a></td>
+      </tr>
+      
+      
+      <tr id="toc-row-6">
+        <th><a href="#slide6">Eine kurze Geschichtsstunde</a></th>
+        <td><a href="#slide6">6</a></td>
+      </tr>
+      
+      
+      <tr id="toc-row-7">
+        <th><a href="#slide7">Grundlagen</a></th>
+        <td><a href="#slide7">7</a></td>
+      </tr>
+      
+      
+      <tr id="toc-row-8">
+        <th><a href="#slide8">Grundlagen</a></th>
+        <td><a href="#slide8">8</a></td>
+      </tr>
+      
+      
+      <tr id="toc-row-9">
+        <th><a href="#slide9">Grundlagen</a></th>
+        <td><a href="#slide9">9</a></td>
+      </tr>
+      
+      
+      <tr id="toc-row-10">
+        <th><a href="#slide10">Plumbing vs. Porcelain</a></th>
+        <td><a href="#slide10">10</a></td>
+      </tr>
+      
+      
+      <tr id="toc-row-11">
+        <th><a href="#slide11">Git-Objekte</a></th>
+        <td><a href="#slide11">11</a></td>
+      </tr>
+      
+      
+      <tr id="toc-row-12">
+        <th><a href="#slide12">Git-Objekte</a></th>
+        <td><a href="#slide12">12</a></td>
+      </tr>
+      
+      
+      <tr id="toc-row-13">
+        <th><a href="#slide13">Git-Referenzen</a></th>
+        <td><a href="#slide13">13</a></td>
+      </tr>
+      
+      
+      <tr id="toc-row-14">
+        <th><a href="#slide14">Packfiles</a></th>
+        <td><a href="#slide14">14</a></td>
+      </tr>
+      
+      
+      <tr id="toc-row-15">
+        <th><a href="#slide15">Git konfigurieren</a></th>
+        <td><a href="#slide15">15</a></td>
+      </tr>
+      
+      
+      <tr id="toc-row-16">
+        <th><a href="#slide16">Git konfigurieren</a></th>
+        <td><a href="#slide16">16</a></td>
+      </tr>
+      
+      
+      <tr id="toc-row-17">
+        <th><a href="#slide17">Git-Repositories</a></th>
+        <td><a href="#slide17">17</a></td>
+      </tr>
+      
+      
+      <tr id="toc-row-18">
+        <th><a href="#slide18">Änderungen aufzeichnen</a></th>
+        <td><a href="#slide18">18</a></td>
+      </tr>
+      
+      
+      <tr id="toc-row-19">
+        <th><a href="#slide19">Änderungen aufzeichnen</a></th>
+        <td><a href="#slide19">19</a></td>
+      </tr>
+      
+      
+      <tr id="toc-row-20">
+        <th><a href="#slide20">Änderungen aufzeichnen</a></th>
+        <td><a href="#slide20">20</a></td>
+      </tr>
+      
+      
+      <tr id="toc-row-21">
+        <th><a href="#slide21">Commit-History betrachten</a></th>
+        <td><a href="#slide21">21</a></td>
+      </tr>
+      
+      
+      <tr id="toc-row-22">
+        <th><a href="#slide22">Branching</a></th>
+        <td><a href="#slide22">22</a></td>
+      </tr>
+      
+      
+      <tr id="toc-row-23">
+        <th><a href="#slide23">Branching-Workflow</a></th>
+        <td><a href="#slide23">23</a></td>
+      </tr>
+      
+      
+      <tr id="toc-row-24">
+        <th><a href="#slide24">Remote Branches</a></th>
+        <td><a href="#slide24">24</a></td>
+      </tr>
+      
+      
+      <tr id="toc-row-25">
+        <th><a href="#slide25">Rebasing</a></th>
+        <td><a href="#slide25">25</a></td>
+      </tr>
+      
+      
+      <tr id="toc-row-26">
+        <th><a href="#slide26">Rebasing</a></th>
+        <td><a href="#slide26">26</a></td>
+      </tr>
+      
+      
+      <tr id="toc-row-27">
+        <th><a href="#slide27">Rebasing</a></th>
+        <td><a href="#slide27">27</a></td>
+      </tr>
+      
+      
+      <tr id="toc-row-28">
+        <th><a href="#slide28">Rebasing</a></th>
+        <td><a href="#slide28">28</a></td>
+      </tr>
+      
+      
+      <tr id="toc-row-29">
+        <th><a href="#slide29">Mehr Tools</a></th>
+        <td><a href="#slide29">29</a></td>
+      </tr>
+      
+      
+      <tr id="toc-row-30">
+        <th><a href="#slide30">Noch mehr Tools</a></th>
+        <td><a href="#slide30">30</a></td>
+      </tr>
+      
+      
+      <tr id="toc-row-31">
+        <th><a href="#slide31">Literatur</a></th>
+        <td><a href="#slide31">31</a></td>
+      </tr>
+      
+      
+    </table>
+  </div>
+  
+  <div id="help" class="sidebar hidden">
+    <h2>Help</h2>
+    <table>
+      <caption>Help</caption>
+      <tr>
+        <th>Table of Contents</th>
+        <td>t</td>
+      </tr>
+      <tr>
+        <th>Exposé</th>
+        <td>ESC</td>
+      </tr>
+      <tr>
+        <th>Full screen slides</th>
+        <td>e</td>
+      </tr>
+      <tr>
+        <th>Presenter View</th>
+        <td>p</td>
+      </tr>
+      <tr>
+        <th>Source Files</th>
+        <td>s</td>
+      </tr>
+      <tr>
+        <th>Slide Numbers</th>
+        <td>n</td>
+      </tr>
+      <tr>
+        <th>Toggle screen blanking</th>
+        <td>b</td>
+      </tr>
+      <tr>
+        <th>Show/hide slide context</th>
+        <td>c</td>
+      </tr>
+      <tr>
+        <th>Notes</th>
+        <td>2</td>
+      </tr>
+      <tr>
+        <th>Help</th>
+        <td>h</td>
+      </tr>
+    </table>
+  </div>
+  <script>main()</script>
+</body>
+</html>
